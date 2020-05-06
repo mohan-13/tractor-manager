@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+     <!-- Required meta tags always come first -->
+     <meta charset="utf-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+     <meta http-equiv="x-ua-compatible" content="ie=edge">
+ 
+     <!-- Bootstrap CSS -->
+     <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+     <link rel="stylesheet" href="css/styles.css">
+     
+    <title>Tractor Manager</title>
+</head>
+
+<body style="background-color: #fff2df;">
+    
+
+    <div  class="container" >
+        <div class="row row-content justify-content-center self-align-center">
+            <div class="col-12 col-sm-8">
+                <div class="card">
+                    <h6 style="text-align: center;" class="card-header bg-primary text-white">Owner Login</h6>
+                        <div class="card-body">
+                            <form>
+                                <div class="form-group row justify-content-center">
+                                    <label class="col-md-2 col-form-label">Username:</label>
+                                    <div class="col-12 col-md-4">
+                                        <input type="text" class="form-control" id="uname" name="uname"  placeholder="Username" required>
+                                    </div>
+                                </div>
+                                <div class="form-group row justify-content-center">
+                                    <label class="col-md-2 col-form-label">Password:</label>
+                                    <div class="col-12 col-md-4">
+                                        <input type="password" class="form-control" id="password" name="passoword"  placeholder="Password" required>
+                                    </div>
+                                </div>
+                                <div class="form-group row justify-content-center">
+                                    <div class="col-auto">
+                                        <button type="button" class="btn btn-success mt-4" id="view_cust_btn" onclick="loginAjaxCall()">Login</button>
+                                    </div>
+                                    <span class="spinner-grow text-success" role="status" aria-hidden="true" id="addspinner"></span>
+                                <span id="error_message" class="text-danger"></span>
+                                </div>
+                                
+                                    
+                                </div>                           
+                            </form>
+                        </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+    
+   <!-- <footer>
+        <div class="container">
+
+           <div class=" row justify-content-center">             
+                <div class="col-auto ">
+                    <p>© Copyright 2020 Mohankumar T</p>
+                </div>
+           </div>
+        </div>
+    </footer> -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS. -->
+<script src="node_modules/jquery/dist/jquery.slim.min.js"></script>
+<script src="node_modules/popper.js/dist/umd/popper.min.js"></script>
+<script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+<script>
+    $("#addspinner").hide();
+    function loginAjaxCall() {
+	// GET DATA
+	var cnameinput = document.getElementById('uname').value;
+	var passwordinput=document.getElementById('password').value;
+    var data = new FormData();
+    $("#error_message").hide();
+    $("#addspinner").show();
+    if(cnameinput=="" || passwordinput=="")
+    {
+        $("#addspinner").hide();
+		$("#error_message").html("Please fill both fields");
+		$("#error_message").show();
+    }
+    else if(cnameinput=="coursera" && passwordinput=="coursera")
+    {
+        $("#addspinner").hide();
+        localStorage.setItem("oid",2);
+        localStorage.setItem("oname","DEMO");
+        //alert(localStorage.getItem("oid"));
+        window.location.href="./adddata.html";
+
+    }
+    else
+    {
+        $("#addspinner").hide();
+		$("#error_message").html("Invalid Credebtials");
+		$("#error_message").show();
+    }
+    
+	return false;
+  }
+	
+</script>
+</body>
+
+</html>

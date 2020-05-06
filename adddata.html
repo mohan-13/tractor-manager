@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+     <!-- Required meta tags always come first -->
+     <meta charset="utf-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+     <meta http-equiv="x-ua-compatible" content="ie=edge">
+ 
+     <!-- Bootstrap CSS -->
+     <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+     <link rel="stylesheet" href="css/styles.css">
+     
+    <title>Tractor Manager</title>
+    <script>
+        var oid=localStorage.getItem("oid");
+        if(oid=="" || oid==null)
+        {
+            window.location.href="./index.html";
+        }
+    </script>
+</head>
+
+<body>
+    <nav class="navbar navbar-dark navbar-expand-sm fixed-top">
+        <div class="container">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#Navbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <a class="navbar-brand mr-auto" href="#"><img src="img/logo.png" height="30" width="30"></a>
+           <div class="collapse navbar-collapse" id="Navbar">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active"><a class="nav-link" href="#">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="./viewdata.html">View Data</a></li>
+                
+            </ul>
+            <a class="nav-link text-white border border-info" href="javascript:logout()">LogOut</a>
+           </div>     
+                    
+        </div>
+        
+    </nav>
+    
+
+    <div  class="container">
+        <div class="row mt-3 justify-content-center">
+            <div class="col-12 text-right text-info">
+                <h6 id="udetails">HI</h6>
+
+            </div>
+        </div>
+        <div class="row row-content justify-content-center">
+            <div class="col-12 col-sm-10">
+                <div class="card" id="reservation-form">
+                    <h3 class="card-header bg-info text-white">Add Work Data</h3>
+                    <div class="card-body">
+                        <form id="addform" onsubmit="return adddataAjaxCAll()">
+                            <div class="form-group row">
+                                <label class="col-md-2 col-form-label">Customer Name</label>
+                                <div class="col-12 col-md-4">
+                                    <input type="text" class="form-control" id="cname" name="cname" placeholder="Customer Name" list="customer_list" autocomplete="off" required>
+                                    <datalist id="customer_list">
+
+                                    </datalist>
+                                </div>
+                                
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-md-2 col-form-label">Date</label>
+                                <div class=" col-12 col-md-4">
+                                    <input type="date" class="form-control" id="pdate" name="pdate" placeholder="Date" required>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="noofguests" class="col-md-2 col-form-label">Type of Work</label>
+                                
+                                   
+                                        <div class="col-12 col-md"><input type="radio"  id="type1" name="type" value=1><label class="form-check-label col-12mr-2" for="type1" >Nine-Plough</label></div>
+                                        <div class="col-12 col-md"><input type="radio"  id="type2" name="type" value=2><label class="form-check-label mr-2" for="type2" >Five-Plough</label></div>
+                                        <div class="col-12 col-md"><input type="radio"  id="type3" name="type" value=3><label class="form-check-label mr-2" for="type3" >Groundnut-Plough</label></div>
+                                        <div class="col-12 col-md"><input type="radio"  id="type4" name="type" value=4><label class="form-check-label mr-2" for="type4" >Rotary Uprooter</label></div>
+                                        <div class="col-12 col-md"><input type="radio"  id="type5" name="type" value=5><label class="form-check-label mr-2" for="type5" >Others</label></div>
+                                        <div class="col-12 col-md"><input type="radio"  id="type6" name="type" value=6><label class="form-check-label mr-2" for="type6" >Payment</label></div>
+                                                                  
+                               
+                            </div>
+                            <div class="form-group row" id="ratediv">
+                                <label for="noofguests" class="col-md-2 col-form-label">Rate per hour</label>
+                                <label class="col-auto  offset-1 offset-sm-0 bg-light col-sm-5 col-form-label border border-success rounded" id="rate_label">0</label>
+                            </div>
+                            
+                            <div class="form-group row" id="ploughdiv">
+                                <label class="col-md-2 col-form-label">Time</label>
+                                <div class=" col-4 col-md-2">
+                                    <input type="number" class="form-control" id="timehrs" name="time_hrs" min=0 max=100  placeholder="Hrs" >
+                                </div>:
+                                <div class="col-4 col-md-2">
+                                    <input type="number" class="form-control" id="timemins" name="time_mins" min=0 max=60  placeholder="Mins">
+                                </div>
+                            </div>
+
+                            <div id="othersdiv">
+                                <div class="form-group row">
+                                <label class="col-md-2 col-form-label">Description</label>
+                                <div class=" col-12 col-md-6">
+                                    <input type="text" class="form-control" id="desc" name="desc"   placeholder="Work Description">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-md-2 col-form-label">Amount</label>
+                                <div class="col-6 col-md-6">
+                                    <input type="number" class="form-control" id="otheramt" name="otheramt"   placeholder="Amount" >
+                                </div>
+                            </div>
+                            </div>
+                            <div class="form-group row" id="paymentdiv">
+                                <label class="col-md-2 col-form-label">Amount</label>
+                                <div class="col-6 col-md-6">
+                                    <input type="number" class="form-control" id="payamt" name="payamt"   placeholder="Amount" >
+                                </div>
+                            </div>
+                            
+                            <div class="form-group row">
+                                <div class="offset-md-2 col-md-10">
+                                    <button type="button" class="btn btn-primary" onclick="adddataAjaxCall()" id="addbutton">Save</button>
+                                    <span class="spinner-grow text-success" role="status" aria-hidden="true" id="addspinner"></span>
+                                    <span id="error_message" class="text-danger"></span>
+                                    <span id="success_message" class="text-success"></span>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <div class="container ">
+           
+           <div class=" row justify-content-center">             
+                <div class="col-auto ">
+                    <p>© Copyright 2020 Mohankumar T</p>
+                </div>
+           </div>
+        </div>
+    </footer>
+<!-- jQuery first, then Popper.js, then Bootstrap JS. -->
+<script src="node_modules/jquery/dist/jquery.slim.min.js"></script>
+<script src="node_modules/popper.js/dist/umd/popper.min.js"></script>
+<script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="index.js"></script>
+<script>
+    $("#othersdiv").hide();
+    $("#paymentdiv").hide();
+    $("#addspinner").hide();
+    $("#ratediv").hide();
+    $('input[name=type]').change(function() {
+   if($(this).val()==5)
+   {
+    $("#ploughdiv").hide();
+    $("#paymentdiv").hide();    
+    $("#othersdiv").show();
+    $("#ratediv").hide();
+   } 
+   else if($(this).val()==6)
+   {
+    $("#ploughdiv").hide();
+    $("#paymentdiv").show();    
+    $("#othersdiv").hide();
+    $("#ratediv").hide();
+
+   }
+   else
+   {
+    $("#ploughdiv").show(); 
+    $("#paymentdiv").hide();   
+    $("#othersdiv").hide();
+    $("#ratediv").hide();
+    var ptype=$(this).val();
+    document.getElementById("rate_label").innerHTML="Rs.1000";
+    $("#ratediv").show();
+    
+   }
+   
+});
+</script>
+</body>
+
+</html>

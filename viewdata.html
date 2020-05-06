@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags always come first -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+
+    <title>Tractor Manager</title>
+    <script>
+        var oid=localStorage.getItem("oid");
+        if(oid=="" || oid==null)
+        {
+            window.location.href="./index.html";
+        }
+    </script>
+</head>
+
+<body>
+    <nav class="navbar navbar-dark navbar-expand-sm fixed-top">
+        <div class="container">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#Navbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <a class="navbar-brand mr-auto" href="#"><img src="img/logo.png" height="30" width="41"></a>
+            <div class="collapse navbar-collapse" id="Navbar">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item"><a class="nav-link" href="./adddata.html"><span
+                                class="fa fa-home fa-lg"></span>Home</a></li>
+                    <li class="nav-item active"><a class="nav-link" href="#"><span class="fa fa-info fa-lg"></span>View
+                            Data</a></li>
+
+                </ul>
+                <a class="nav-link text-white border border-info" href="javascript:logout()">LogOut</a>
+            </div>
+
+        </div>
+
+    </nav>
+
+    <div class="container">
+        <div class="row mt-3 justify-content-center">
+            <div class="col-12 text-right text-info">
+                <h6 id="udetails">HI</h6>
+
+            </div>
+        </div>
+
+        <div class="row row-content justify-content-center">
+            <div class="col-12 col-sm-10">
+                <div class="card" id="reservation-form">
+                    <h3 class="card-header bg-info text-white">Customer Data</h3>
+                    <div class="card-body">
+                        <form onsubmit="return getCustAjaxcall()">
+                            <div class="form-group row">
+                                <label class="col-md-2 col-form-label">Customer Name</label>
+                                <div class="col-12 col-md-4">
+                                    <input type="text" class="form-control" id="cname" name="cname" list="customer_list"
+                                        autocomplete="off" placeholder="Customer Name">
+                                    <datalist id="customer_list">
+
+                                    </datalist>
+                                </div>
+                                <div class="col-md-4 justify-content-center">
+                                    <button type="button" class="btn btn-primary mt-1" id="view_cust_btn"
+                                        onclick="getCustAjaxcall()">View</button>
+                                </div>
+
+                            </div>
+                        </form>
+                        <div class="row justify-content-center">
+                            <div class="col-12 col-sm-8">
+                                <div class="card">
+                                    <h6 style="text-align: center;" class="card-header bg-danger text-white">Customer
+                                        Overview</h3>
+                                        <div class="card-body">
+                                            <label class="col-12  col-sm-4 col-form-label">Customer Name:</label>
+                                            <label
+                                                class="col-11 offset-1 bg-light offset-sm-0 col-sm-6 col-form-label border border-success rounded"
+                                                id="cust_label">XXYY</label>
+                                            <label class="col-12 col-sm-4 col-form-label">Amount Pending:</label>
+                                            <label
+                                                class="mt-1 offset-1 bg-light offset-sm-0 col-11 col-sm-6 col-form-label  border border-success rounded"
+                                                id="amt_label">Rs.0</label>
+                                            <button type="button" class="mt-2 btn btn-success float-right"
+                                                onclick="getCustTransAjaxCall()">Get Transactions</button>
+                                        </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-center" id="transdiv">
+            <div class="col-12 col-sm-10">
+                <h2>Transactions</h2>
+                <div class="table-responsive">
+                    <table class="table table-striped" id="transtable">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th>Date</th>
+                                <th>Description</th>
+                                <th>Time</th>
+                                <th>Amount</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="col-12 col-sm-3">
+
+            </div>
+        </div>
+
+    </div>
+
+
+    <footer>
+        <div class="container">
+
+            <div class=" row justify-content-center">
+                <div class="col-auto ">
+                    <p>© Copyright 2020 Mohankumar T</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- jQuery first, then Popper.js, then Bootstrap JS. -->
+    <script src="node_modules/jquery/dist/jquery.slim.min.js"></script>
+    <script src="node_modules/popper.js/dist/umd/popper.min.js"></script>
+    <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="index.js"></script>
+    <script>
+        $("#transdiv").hide();
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,20 @@
+{
+  "name": "tractormanager",
+  "version": "1.0.0",
+  "description": "Tractor Manager Application",
+  "main": "index.html",
+  "scripts": {
+    "start": "npm run lite",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lite": "lite-server"
+  },
+  "author": "Mohankumar T",
+  "license": "ISC",
+  "dependencies": {
+    "@fortawesome/fontawesome-free": "^5.13.0",
+    "bootstrap": "^4.4.1",
+    "jquery": "^3.3.1",
+    "lite-server": "^2.5.4",
+    "popper.js": "^1.16.1"
+  }
+}
