@@ -1,7 +1,0 @@
-mohanTK@7007
-tractor-manager
-
-db:
-tractoraccountant
-mohantk
-thangavelS@7007
